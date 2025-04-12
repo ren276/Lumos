@@ -10,7 +10,7 @@ const googleAI = createGoogleGenerativeAI({
 export const generateCreativePrompt = async (userPrompt: string) => {
   const finalPrompt = `
 Create a coherent and relevant outline for the following prompt: ${userPrompt}.
-The outline should consist of at least 6 points, with each point written as a single sentence.
+The outline should consist of at least 6 points ( but not 7 unless asked), with each point written as a single sentence.
 Ensure the outline is well-structured and directly related to the topic.
 
 Return ONLY the output in this exact plain JSON format — no explanation, no markdown:
@@ -30,11 +30,25 @@ Do NOT wrap the response in triple backticks or markdown formatting. Return ONLY
   try {
     const result = await generateText({
       model: googleAI("models/gemini-1.5-flash"),
-      prompt: finalPrompt,
+      messages: [
+        {
+          role: 'system',
+          content: 'You are a helpful AI that generates outlines for presentations.'
+
+        },
+        {
+          role: 'user',
+          content:finalPrompt
+
+        }
+      ],
+
+      temperature: 0.0,
+      maxTokens:1000,
     });
 
     const rawOutput = result.text.trim();
-    console.log("🧾 Raw Gemini Output:", rawOutput);
+
 
     // Sanitize and extract valid JSON from possible markdown wrappers
     const cleanedOutput = rawOutput
