@@ -13,7 +13,7 @@ const NavMain = ({
         title: string;
         url: string;
         icon: React.FC<React.SVGProps<SVGSVGElement>>
-        isActive: boolean
+        isActive?: boolean
         items?:{
             title: string
             url:string

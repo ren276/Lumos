@@ -6,8 +6,7 @@ import { Sidebar,
     SidebarHeader,
     SidebarMenuButton, } from '@/components/ui/sidebar';
 import React from 'react';
-import { Avatar, AvatarImage } from '@/components/ui/avatar';
-import { AvatarFallback } from '@radix-ui/react-avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import NavMain from './nav-main';
 import { data } from '@/lib/constants';
 import RecentOpen from './recent-open';
@@ -31,11 +30,9 @@ const AppSidebar = ({recentProjects, user, ...props}:{
                         <AvatarImage 
                         src={'/lumos.png'}
                         alt={'lumos-logo'}/>
-                        <AvatarFallback className='rounded-lg'>LU
-
+                        <AvatarFallback className='rounded-lg'>
+                            LU
                         </AvatarFallback>
-
-        
                     </Avatar>
                 </div>
                 <span className='truncate text-primary text-3xl font-semibold'>Lumos</span>

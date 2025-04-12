@@ -27,12 +27,13 @@ const RecentOpen = ({recentProjects}: Props) => {
            
         }
 
-        setSlides(JSON.parse(JSON.stringify(slides)));
+        setSlides(JSON.parse(JSON.stringify(slides)))
         router.push(`/presentation/${projectId}`)
 
     }
   return (
-    recentProjects.length > 0 ?  ( <SidebarGroup>
+    recentProjects.length > 0 ?  ( 
+    <SidebarGroup>
     <SidebarGroupLabel>Recently Opened</SidebarGroupLabel>
     <SidebarMenu>
         {recentProjects.length > 0 ? 
