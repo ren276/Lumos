@@ -7,6 +7,8 @@ import { ArrowLeft } from "lucide-react";
 import { redirect, useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import ThemeCard from "./ThemeCard";
+import ThemePicker from "./ThemePicker";
+import { themes } from "@/lib/constants";
 
 type Props = {};
 
@@ -140,6 +142,11 @@ const ThemePreview = (props: Props) => {
     </div>
   );
 
+  const applyTheme = (theme: Theme) => {
+    setSelectedTheme(theme)
+    setCurrentTheme(theme)
+  }
+
   return (
     <div
       className="h-screen w-full flex"
@@ -167,16 +174,39 @@ const ThemePreview = (props: Props) => {
           </Button>
           <div className="w-full flex justify-center items-center relative flex-grow">
             <ThemeCard
-              title="Ouick start"
-              description="get up affew"
+              title="Quick start"
+              description="Get up and running in no time"
               content={leftCardContent}
               variant="left"
+              theme={selectedTheme}
+              controls={controls}
+            />
+            <ThemeCard
+              title="Main Preview"
+              description="This is the main preview card"
+              content={mainCardContent}
+              variant="main"
+              theme={selectedTheme}
+              controls={controls}
+            />
+            <ThemeCard
+              title="Theme Features"
+              description="Discover what our themes can do"
+              content={rightCardContent}
+              variant="right"
               theme={selectedTheme}
               controls={controls}
             />
           </div>
         </div>
       </div>
+
+      <ThemePicker 
+      selectedTheme={selectedTheme}
+      themes={themes}
+      onThemeSelect={applyTheme}
+
+      />
     </div>
   );
 };
